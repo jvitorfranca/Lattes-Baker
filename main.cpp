@@ -37,7 +37,7 @@ int main(int argc, char const *argv[]) {
   periodico *periodico_arq;
   congresso *congresso_arq;
 
-  int i, j;
+  int i, j, k;
   int size_docente;
   int size_orientacao;
   int size_producao;
@@ -49,6 +49,12 @@ int main(int argc, char const *argv[]) {
   char arquivo_producao[] = "arquivosTrabalho/producao_V2.csv";
   char arquivo_periodico[] = "arquivosTrabalho/qualis_capes_periodicos.csv";
   char arquivo_congresso[] = "arquivosTrabalho/qualis_capes_congressos.csv";
+
+  char *area_de_avaliacao;
+
+  area_de_avaliacao = new char [50];
+
+  strcpy(area_de_avaliacao, "CIÊNCIAS BIOLÓGICAS I");
 
   size_docente = numLinhas(arquivo_docente);
   size_orientacao = numLinhas(arquivo_orientacao);
@@ -118,7 +124,7 @@ int main(int argc, char const *argv[]) {
       }
     }
   }
-/*
+
   for (i = 0;i < size_docente;i++){
     qntd_periodico[i].estrato_A1 = 0;
     qntd_periodico[i].estrato_A2 = 0;
@@ -129,37 +135,36 @@ int main(int argc, char const *argv[]) {
     qntd_periodico[i].estrato_B5 = 0;
     qntd_periodico[i].estrato_C = 0;
     qntd_periodico[i].sem_estrato = 0;
-    for (j = 0;j < size_periodico;j++){
-      if (strcmp(producao_arq[i].issn, periodico_arq[j].issn) == 0){
-        if (strcmp(periodico_arq[j].estrato_qualis, "\"A1\"") == 0){
-          qntd_periodico[i].estrato_A1 += 1;
-        }
-        if (strcmp(periodico_arq[j].estrato_qualis, "\"A2\"") == 0){
-          qntd_periodico[i].estrato_A2 += 1;
-        }
-        if (strcmp(periodico_arq[j].estrato_qualis, "\"B1\"") == 0){
-          qntd_periodico[i].estrato_B1 += 1;
-        }
-        if (strcmp(periodico_arq[j].estrato_qualis, "\"B2\"") == 0){
-          qntd_periodico[i].estrato_B2 += 1;
-        }
-        if (strcmp(periodico_arq[j].estrato_qualis, "\"B3\"") == 0){
-          qntd_periodico[i].estrato_B3 += 1;
-        }
-        if (strcmp(periodico_arq[j].estrato_qualis, "\"B4\"") == 0){
-          qntd_periodico[i].estrato_B4 += 1;
-        }
-        if (strcmp(periodico_arq[j].estrato_qualis, "\"B5\"") == 0){
-          qntd_periodico[i].estrato_B5 += 1;
-        }
-        if (strcmp(periodico_arq[j].estrato_qualis, "\"C\"") == 0){
-          qntd_periodico[i].estrato_C += 1;
+    for (j = 0;j < size_producao;j++){
+      if ((strcmp(docente_arq[i].id_docente, producao_arq[j].id_docente) == 0) && (strcmp(producao_arq[j].tipo_producao,"\"ARTIGO-PUBLICADO\"") == 0)){
+        for (k = 0;k < size_periodico;k++){
+          if ((strcmp(producao_arq[j].issn, periodico_arq[k].issn) == 0) && (strcmp(periodico_arq[k].area_de_avaliacao, "\"CIÊNCIAS BIOLÓGICAS I\"") == 0)){
+            if (strcmp(periodico_arq[k].estrato_qualis, "\"A1\"") == 0){
+              qntd_periodico[i].estrato_A1 += 1;
+            } else if (strcmp(periodico_arq[k].estrato_qualis, "\"A2\"") == 0){
+              qntd_periodico[i].estrato_A2 += 1;
+            } else if (strcmp(periodico_arq[k].estrato_qualis, "\"B1\"") == 0){
+              qntd_periodico[i].estrato_B1 += 1;
+            } else if (strcmp(periodico_arq[k].estrato_qualis, "\"B2\"") == 0){
+              qntd_periodico[i].estrato_B2 += 1;
+            } else if (strcmp(periodico_arq[k].estrato_qualis, "\"B3\"") == 0){
+              qntd_periodico[i].estrato_B3 += 1;
+            } else if (strcmp(periodico_arq[k].estrato_qualis, "\"B4\"") == 0){
+              qntd_periodico[i].estrato_B4 += 1;
+            } else if (strcmp(periodico_arq[k].estrato_qualis, "\"B5\"") == 0){
+              qntd_periodico[i].estrato_B5 += 1;
+            } else if (strcmp(periodico_arq[k].estrato_qualis, "\"C\"") == 0){
+              qntd_periodico[i].estrato_C += 1;
+            }
+          } else if (strcmp(producao_arq[j].issn, periodico_arq[k].issn) == 0){
+            qntd_periodico[i].sem_estrato += 1;
+          }
         }
       }
     }
   }
-*/
 
+/*
 for (i = 1;i < size_docente;i++){
   cout << "Docente: " << docente_arq[i].nome_completo << endl;
   cout << "Dissertações de mestrado: " << qntd_orientacao[i].dissertacao_mestrado << endl;
@@ -172,6 +177,7 @@ for (i = 1;i < size_docente;i++){
   cout << "Trabalhos em eventos: " << qntd_producao[i].trabalho_evento << endl;
   cout << endl;
 }
+*/
 /*
 for (i = 1;i < size_docente;i++){
     cout << "Docente: " << docente_arq[i].nome_completo << endl;
