@@ -13,10 +13,10 @@ typedef struct _orientacao_{
   char ano[20];
 }orientacao;
 
-orientacao *retornaOrientacao(int size_orientacao){
+orientacao *retornaOrientacao(int size_orientacao, char arquivo[]){
   char *buffer;
   char *bufferHold;
-  char arquivo[] = "arquivosTrabalho/orientacao.csv";
+  //char arquivo[] = "orientacao.csv";
 
   buffer = new char [1000];
 

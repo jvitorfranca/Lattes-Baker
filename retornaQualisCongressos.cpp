@@ -10,11 +10,11 @@ typedef struct _congressos_{
   char estrato_qualis[10];
 }congresso;
 
-congresso *retornaCongresso(int size_congresso){
+congresso *retornaCongresso(int size_congresso, char arquivo[]){
   char *buffer;
   char *bufferHold;
 
-  char arquivo[] = "arquivosTrabalho/qualis_capes_congressos.csv";
+  //char arquivo[] = "qualis_capes_congressos.csv";
 
   buffer = new char [10000];
 
@@ -26,6 +26,8 @@ congresso *retornaCongresso(int size_congresso){
 
   int i = 0;
 
+  int size_sigla;
+
   ifstream fin(arquivo);
 
   if (fin.is_open()){
@@ -33,25 +35,36 @@ congresso *retornaCongresso(int size_congresso){
     while (!fin.eof()){
       fin.getline(buffer, 10000);
 
+      buffer += 1;
+
       if (i == size_congresso - 1){
         continue;
       }
 
       char *aux;
 
-      aux = strstr(buffer, "\",\"");
-      aux = aux + 1;
+      aux = strstr(buffer,"\",\"");
       *aux = '\0';
-      strcpy(congressos[i].nome_congresso, buffer);
-      buffer = aux + 1;
+      strcpy(congressos[i].nome_congresso,buffer);
+      buffer = aux + 3;
 
-      aux = strstr(buffer, "\",\"");
-      aux = aux + 1;
+      aux = strstr(buffer,"\",\"");
       *aux = '\0';
-      strcpy(congressos[i].sigla_congresso, buffer);
-      buffer = aux + 1;
+      strcpy(congressos[i].sigla_congresso,buffer);
+      buffer = aux + 3;
 
+      aux = strstr(buffer,"\"");
+      *aux = '\0';
       strcpy(congressos[i].estrato_qualis, buffer);
+
+      //retirando a sigla do nome do congresso
+
+      size_sigla = strlen(congressos[i].sigla_congresso) + 3;
+      strcpy(buffer,congressos[i].nome_congresso);
+      buffer += size_sigla;
+      strcpy(congressos[i].nome_congresso,buffer);
+
+      // cout << congressos[i].estrato_qualis << endl;
 
       i++;
 

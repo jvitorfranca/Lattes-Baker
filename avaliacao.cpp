@@ -9,15 +9,11 @@ typedef struct _avaliacao_{
     int pontuacao[22];
 }avaliacao;
 
-int main(int argc, char const *argv[]) {
-  char regra_avaliacao[50];
+avaliacao retornaPontuacoes(char regra_avaliacao[]){
   char *buffer;
   avaliacao regra;
 
   buffer = new char [100];
-
-  cout << "informe o nome da avaliação: " << endl;
-  cin >> regra_avaliacao;
 
   ifstream fin(regra_avaliacao);
 
@@ -43,14 +39,9 @@ int main(int argc, char const *argv[]) {
         i++;
       }
     }
-    cout << regra.area_de_avaliacao << endl;
-  }
-
-  for (i = 0;i < 22;i++){
-    cout << regra.pontuacao[i] << endl;
   }
 
   fin.close();
 
-  return 0;
+  return regra;
 }

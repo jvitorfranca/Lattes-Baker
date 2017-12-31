@@ -9,10 +9,10 @@ typedef struct _docentes_{
   char nome_completo[100];
 }docente;
 
-docente *retornaDocente(int size_docente){
+docente *retornaDocente(int size_docente, char arquivo[]){
   char *buffer;
   char *bufferHold;
-  char arquivo[] = "arquivosTrabalho/docentes.csv";
+  //char arquivo[] = "arquivosTrabalho/docentes.csv";
 
   buffer = new char [1000];
 

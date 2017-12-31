@@ -11,14 +11,14 @@ typedef struct _producao_{
   char issn[50];
   char titulo[300];
   char local[300];
-  char ano_trabalho[50];
+  int ano_trabalho;
 }producao;
 
-producao *retornaProducoes(int size_producao){
+producao *retornaProducoes(int size_producao, char arquivo[]){
   char *buffer;
   char *bufferHold;
 
-  char arquivo[] = "arquivosTrabalho/producao_V2.csv";
+  //char arquivo[] = "producao_V2.csv";
 
   buffer = new char [10000];
 
@@ -33,7 +33,7 @@ producao *retornaProducoes(int size_producao){
   ifstream fin(arquivo);
 
   if (fin.is_open()){
-    fin.getline(buffer, 10000);
+    // fin.getline(buffer, 10000);
     while (!fin.eof()){
       fin.getline(buffer, 10000);
 
@@ -77,13 +77,50 @@ producao *retornaProducoes(int size_producao){
         buffer = aux + 2;
 
         aux = strstr(buffer, "\",");
-        aux = aux + 1;
+        // aux = aux + 1;
         *aux = '\0';
         strcpy(producoes[i].local, buffer);
-        buffer = aux + 1;
+        buffer = aux + 2;
 
-        strcpy(producoes[i].ano_trabalho, buffer);
+        producoes[i].ano_trabalho = atoi(buffer);
+/*
+        aux=strstr(buffer,",");
+            *aux='\0';
+            strcpy(producoes[i].id_docente,buffer);
+            buffer= aux + 1;
 
+            aux=strstr(buffer,",");
+            *aux='\0';
+            strcpy(producoes[i].id_producao,buffer);
+            buffer= aux+2;
+
+            aux=strstr(buffer,"\",\"");
+            *aux='\0';
+            strcpy(producoes[i].tipo_producao,buffer);
+            buffer= aux+3;
+
+            aux=strstr(buffer,"\",\"");
+            *aux='\0';
+            if(buffer!=NULL){
+              strcpy(producoes[i].issn,buffer);
+            }
+            buffer= aux + 3;
+
+            aux=strstr(buffer,"\",\"");
+            *aux='\0';
+            strcpy(producoes[i].titulo,buffer);
+            buffer= aux+3;
+
+
+            aux=strstr(buffer,"\",");
+            *aux='\0';
+            strcpy(producoes[i].local,buffer);
+            buffer= aux+2;
+
+            strcpy(producoes[i].ano_trabalho,buffer);
+
+            // cout << producoes[i].local << endl;
+*/
       i++;
 
       buffer = bufferHold;

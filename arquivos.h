@@ -12,6 +12,7 @@
 #include "retornaProducao.cpp"
 #include "retornaQualisPeriodicos.cpp"
 #include "retornaQualisCongressos.cpp"
+#include "avaliacao.cpp"
 
 int numLinhas(char *arquivo);
 
@@ -24,5 +25,7 @@ producao *retornaProducoes(int size_producao);
 periodico *retornaPeriodico(int size_periodico);
 
 congresso *retornaCongresso(int size_congresso);
+
+avaliacao retornaPontuacoes(char regra_avaliacao[]);
 
 #endif
