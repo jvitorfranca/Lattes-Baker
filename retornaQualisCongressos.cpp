@@ -4,13 +4,16 @@
 
 using namespace std;
 
+// estrutura que receberá as informações do arquivo qualis_capes_congressos
 typedef struct _congressos_{
   char nome_congresso[100];
   char sigla_congresso[20];
   char estrato_qualis[10];
 }congresso;
 
+// função retornará um vetor da struct com as informações contidas no arquivo
 congresso *retornaCongresso(int size_congresso, char arquivo[]){
+  // buffer fará as operações no arquivo
   char *buffer;
   char *bufferHold;
 
@@ -22,6 +25,7 @@ congresso *retornaCongresso(int size_congresso, char arquivo[]){
 
   congressos = new congresso [size_congresso];
 
+  //bufferHold retornará o buffer para a posição inicial
   bufferHold = buffer;
 
   int i = 0;
@@ -30,6 +34,7 @@ congresso *retornaCongresso(int size_congresso, char arquivo[]){
 
   ifstream fin(arquivo);
 
+  // verifica-se se o arquivo foi aberto
   if (fin.is_open()){
     fin.getline(buffer, 10000);
     while (!fin.eof()){
@@ -37,12 +42,14 @@ congresso *retornaCongresso(int size_congresso, char arquivo[]){
 
       buffer += 1;
 
+      // artificio que ignora a linha a mais criada pelo getline
       if (i == size_congresso - 1){
         continue;
       }
 
       char *aux;
 
+      //aqui são feitas as operações para passar as informações para o vetor da struct
       aux = strstr(buffer,"\",\"");
       *aux = '\0';
       strcpy(congressos[i].nome_congresso,buffer);
@@ -63,8 +70,6 @@ congresso *retornaCongresso(int size_congresso, char arquivo[]){
       strcpy(buffer,congressos[i].nome_congresso);
       buffer += size_sigla;
       strcpy(congressos[i].nome_congresso,buffer);
-
-      // cout << congressos[i].estrato_qualis << endl;
 
       i++;
 

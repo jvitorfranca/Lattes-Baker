@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//estrutura que receberá as informações do arquivo de orientacao
 typedef struct _orientacao_{
   char id_docente[100];
   char id_orientacao[100];
@@ -13,7 +14,12 @@ typedef struct _orientacao_{
   char ano[20];
 }orientacao;
 
+/*
+  função recebe o tamanho do arquivo, o nome do mesmo
+  e retorna um vetor da estrutura com as informações
+*/
 orientacao *retornaOrientacao(int size_orientacao, char arquivo[]){
+  //buffer que fará as operações no arquivo
   char *buffer;
   char *bufferHold;
   //char arquivo[] = "orientacao.csv";
@@ -24,10 +30,12 @@ orientacao *retornaOrientacao(int size_orientacao, char arquivo[]){
 
   orientacoes = new orientacao [size_orientacao];
 
+  //bufferHold recebe buffer para no final do laço retorná-lo a posição original
   bufferHold = buffer;
 
   int i = 0;
 
+  //abre-se o arquivo e verifica-se se o mesmo está aberto
   ifstream fin(arquivo);
 
   if (fin.is_open()){
@@ -35,10 +43,12 @@ orientacao *retornaOrientacao(int size_orientacao, char arquivo[]){
     while (!fin.eof()){
       fin.getline(buffer, 1000);
 
+      //artificio contorna a linha a mais retornada pela função getline
       if (i == size_orientacao - 1){
         continue;
       }
 
+      // aqui as informações são repassadas para o vetor da estrutura
       char *aux;
 
       aux = strstr(buffer, ",");

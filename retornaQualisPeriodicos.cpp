@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// estrutura que receberá as informações do arquivo periodico
 typedef struct _periodicos_{
   char issn[50];
   char nome_periodico[200];
@@ -11,11 +12,11 @@ typedef struct _periodicos_{
   char estrato_qualis[10];
 }periodico;
 
+// função retornará um vetor da estrutura
 periodico *retornaPeriodico(int size_periodico, char arquivo[]){
+  // buffer fará as operações no arquivo
   char *buffer;
   char *bufferHold;
-
-  //char arquivo[] = "qualis_capes_periodicos.csv";
 
   buffer = new char [10000];
 
@@ -23,23 +24,27 @@ periodico *retornaPeriodico(int size_periodico, char arquivo[]){
 
   periodicos = new periodico [size_periodico];
 
+  //bufferHold retornará o buffer para a posição original
   bufferHold = buffer;
 
   int i = 0;
 
   ifstream fin(arquivo);
 
+  // verifica-se se o arquivo foi aberto
   if (fin.is_open()){
     fin.getline(buffer, 10000);
     while (!fin.eof()){
       fin.getline(buffer, 10000);
 
+      // ignorando a linha a mais retornada pela função getline
       if (i == size_periodico - 1){
         continue;
       }
 
       char *aux;
 
+      // aqui as informações são passadas para a struct
       aux = strstr(buffer, "\",\"");
       aux = aux + 1;
       *aux = '\0';

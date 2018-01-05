@@ -1,16 +1,21 @@
 #include<iostream>
 #include<string.h>
 #include<fstream>
+#include<stdlib.h>
 
 using namespace std;
 
+// estrutura que conterá as informações do arquivo de avaliação
 typedef struct _avaliacao_{
     char area_de_avaliacao[50];
     int pontuacao[22];
 }avaliacao;
 
+// função retornará as informações contidas no arquivo
 avaliacao retornaPontuacoes(char regra_avaliacao[]){
+  // buffer fará as operações no arquivo
   char *buffer;
+
   avaliacao regra;
 
   buffer = new char [100];
@@ -19,6 +24,7 @@ avaliacao retornaPontuacoes(char regra_avaliacao[]){
 
   int i = 0;
 
+  // verifica-se se o arquivo foi aberto
   if (fin.is_open()){
     fin.getline(buffer, 100);
     while (!fin.eof()){
@@ -26,10 +32,12 @@ avaliacao retornaPontuacoes(char regra_avaliacao[]){
 
       char *aux;
 
+      // contorna a linha a mais retornada pelo getline
       if (i == 22){
         continue;
       }
 
+      // aqui as informações são repassadas para a variavel
       aux = strstr(buffer, ":");
       if (aux == NULL){
         strcpy(regra.area_de_avaliacao, buffer);

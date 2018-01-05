@@ -4,6 +4,10 @@
 
 using namespace std;
 
+/*
+  função recebe o nome do arquivo e retorna o mesmo sem extensão,
+  para que possa ser usado na criação do arquivo final
+*/
 char *retornaNome(char arquivo_regra[]) {
   char *nome_saida;
 
