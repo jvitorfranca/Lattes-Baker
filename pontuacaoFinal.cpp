@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// estrutura que calcula a quantidade final de cada pontuação
 typedef struct _pontuacao_final_{
   int pont_con_A1;
   int pont_con_A2;
@@ -30,14 +31,18 @@ typedef struct _pontuacao_final_{
   int somatorio;
 }conta_pontuacao;
 
+// função que retorna vetor com a pontuação final de cada um dos docentes
 conta_pontuacao *pontuacaoFinal(int size_docente, int l, conta_congresso *qntd_congresso, conta_periodico *qntd_periodico, conta_orientacao *qntd_orientacao, avaliacao *regra){
   conta_pontuacao *pontuacao_final;
 
   pontuacao_final = new conta_pontuacao [size_docente];
 
+  // contador representa as regras das pontuações
   int contador = 0;
+  // soma recebe a soma de todos os valores
   int soma = 0;
 
+  // operações que retornarão a pontuação final dos docentes
   for (int i = 1;i < size_docente;i++){
     pontuacao_final[i].pont_con_A1 = 0;
     pontuacao_final[i].pont_con_A1 = qntd_congresso[i].estrato_A1 * regra[l].pontuacao[contador];

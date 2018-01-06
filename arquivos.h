@@ -43,16 +43,22 @@ congresso *retornaCongresso(int size_congresso);
 //função que recebe o tamanho do arquivo de avaliação e retorna um vetor com as informações contidas no aquivo
 avaliacao retornaPontuacoes(char regra_avaliacao[]);
 
+//função que conta a quantidade de orientacoes de cada docente
 conta_orientacao *qntdOrientacao(int size_docente, int size_orientacao, docente *docente_arq, orientacao *orientacao_arq);
 
+//função que conta a quantidade de produções de cada docentes
 conta_producao *qntdProducao(int size_docente, int size_producao, docente *docente_arq, producao *producao_arq);
 
+//função que conta a quantidade de congressos dos docentes
 conta_congresso *qntdCongresso(int size_docente, int size_producao, int size_congresso, int ano_minimo, int ano_maximo, docente *docente_cpy, producao *producao_arq, congresso *congresso_arq, conta_producao *qntd_producao);
 
+//função que conta a quantidade de periódicos de cada docente
 conta_periodico *qntdPeriodico(int size_docente, int size_producao, int size_periodico, int ano_minimo, int ano_maximo, int l, docente *docente_arq, producao *producao_arq, periodico *periodico_arq, avaliacao *regra);
 
+//função que calcula a pontuação final dos docentes
 conta_pontuacao *pontuacaoFinal(int size_docente, int l, conta_congresso *qntd_congresso, conta_periodico *qntd_periodico, conta_orientacao *qntd_orientacao, avaliacao *regra);
 
+//função que ordena as pontuações dos docentes
 void ordenaPontuacao(int size_docente, conta_pontuacao *pontuacao_final, docente *docente_cpy);
 
 //função que recebe o nome do arquivo da regra e retorna seu nome sem a extensão

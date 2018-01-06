@@ -4,19 +4,23 @@
 
 using namespace std;
 
+// estrutura que armazena o numero de artigos e trabalho em evento de cada docente
 typedef struct _producao_por_docente_{
   int artigo_publicado;
   int trabalho_evento;
 }conta_producao;
 
+// função que retorna um vetor da estrutura
 conta_producao *qntdProducao(int size_docente, int size_producao, docente *docente_arq, producao *producao_arq){
   conta_producao *qntd_producao;
 
   qntd_producao = new conta_producao [size_docente];
 
+  // primeiro for roda os docentes, zerando o artigo e trabalho de cada docente
   for (int i = 0;i < size_docente;i++){
     qntd_producao[i].artigo_publicado = 0;
     qntd_producao[i].trabalho_evento = 0;
+    // segundo for compara o id e as comparações
     for (int j = 0;j < size_producao;j++){
       if (strcmp(docente_arq[i].id_docente, producao_arq[j].id_docente) == 0){
         if (strcmp(producao_arq[j].tipo_producao,"\"ARTIGO-PUBLICADO\"") == 0){

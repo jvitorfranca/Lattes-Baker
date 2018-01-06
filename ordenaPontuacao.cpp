@@ -4,7 +4,9 @@
 
 using namespace std;
 
+// função que recebe as pontuações finais e os docentes e ordena-os
 void ordenaPontuacao(int size_docente, conta_pontuacao *pontuacao_final, docente *docente_cpy){
+  // variaveis auxiliares que serão utilizadas para ordenar as pontuações
   char aux_docente[100];
   int aux_con_A1 = 0;
   int aux_con_A2 = 0;
@@ -30,6 +32,7 @@ void ordenaPontuacao(int size_docente, conta_pontuacao *pontuacao_final, docente
   int aux_TD = 0;
   int aux_final = 0;
 
+  // algortimo de ordenação
   for (int i = 1;i < size_docente;i++){
     for (int j = i + 1;j < size_docente;j++){
       if (pontuacao_final[i].somatorio < pontuacao_final[j].somatorio){
