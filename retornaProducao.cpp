@@ -2,19 +2,9 @@
 #include<string.h>
 #include<fstream>
 #include<stdlib.h>
+#include "arquivos.h"
 
 using namespace std;
-
-//estrutura do arquivo de produção
-typedef struct _producao_{
-  char id_docente[100];
-  char id_producao[300];
-  char tipo_producao[300];
-  char issn[50];
-  char titulo[300];
-  char local[300];
-  int ano_trabalho;
-}producao;
 
 //função que retornará um vetor da estrutura com todas as informações contidas no arquivo
 producao *retornaProducoes(int size_producao, char arquivo[]){

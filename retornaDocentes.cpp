@@ -1,14 +1,9 @@
 #include<iostream>
 #include<fstream>
 #include<string.h>
+#include "arquivos.h"
 
 using namespace std;
-
-//estrutura que receberá as informações do docente
-typedef struct _docentes_{
-  char id_docente[100];
-  char nome_completo[100];
-}docente;
 
 docente *retornaDocente(int size_docente, char arquivo[]){
   //buffer que receberá as informações do arquivo

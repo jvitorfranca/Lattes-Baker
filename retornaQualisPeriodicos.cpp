@@ -1,16 +1,9 @@
 #include<iostream>
 #include<string.h>
 #include<fstream>
+#include "arquivos.h"
 
 using namespace std;
-
-// estrutura que receberá as informações do arquivo periodico
-typedef struct _periodicos_{
-  char issn[50];
-  char nome_periodico[200];
-  char area_de_avaliacao[100];
-  char estrato_qualis[10];
-}periodico;
 
 // função retornará um vetor da estrutura
 periodico *retornaPeriodico(int size_periodico, char arquivo[]){

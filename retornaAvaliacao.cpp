@@ -2,14 +2,9 @@
 #include<string.h>
 #include<fstream>
 #include<stdlib.h>
+#include "arquivos.h"
 
 using namespace std;
-
-// estrutura que conterá as informações do arquivo de avaliação
-typedef struct _avaliacao_{
-    char area_de_avaliacao[50];
-    int pontuacao[22];
-}avaliacao;
 
 // função retornará as informações contidas no arquivo
 avaliacao retornaPontuacoes(char regra_avaliacao[]){

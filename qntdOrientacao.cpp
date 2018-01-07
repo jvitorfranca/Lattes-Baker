@@ -1,16 +1,9 @@
 #include<iostream>
 #include<string.h>
 #include<fstream>
+#include "arquivos.h"
 
 using namespace std;
-
-// estrutura que armazena a quantidade de orientacoes de cada docente
-typedef struct _orientacao_por_docente_{
-  int iniciacao_cientifica;
-  int trabalho_conclusao;
-  int dissertacao_mestrado;
-  int tese_doutorado;
-}conta_orientacao;
 
 // função que retorna um vetor da estrutura, com o número total de orientações de cada docente
 conta_orientacao *qntdOrientacao(int size_docente, int size_orientacao, docente *docente_arq, orientacao *orientacao_arq){

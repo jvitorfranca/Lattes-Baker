@@ -127,9 +127,9 @@ if (num_regras >= 0){
     output.open(nome_saida);
     for (i = 1;i < size_docente;i++){
       output << docente_cpy[i].nome_completo << endl;
-      output << pontuacao_final[i].pont_con_A1 << "," << pontuacao_final[i].pont_con_A2 << "," << pontuacao_final[i].pont_con_B1 << "," << pontuacao_final[i].pont_con_B2 << "," << pontuacao_final[i].pont_con_B3 << "," << pontuacao_final[i].pont_con_B4 << "," << pontuacao_final[i].pont_con_B5 << "," <<
-      pontuacao_final[i].pont_con_C << "," << pontuacao_final[i].pont_con_SE << "," << pontuacao_final[i].pont_per_A1 << "," << pontuacao_final[i].pont_per_A2 << "," << pontuacao_final[i].pont_per_B1 << "," << pontuacao_final[i].pont_per_B2 << "," << pontuacao_final[i].pont_per_B3 << "," <<
-      pontuacao_final[i].pont_per_B4 << "," << pontuacao_final[i].pont_per_B5 << "," << pontuacao_final[i].pont_per_C << "," << pontuacao_final[i].pont_per_SE << "," << pontuacao_final[i].pont_IC << "," << pontuacao_final[i].pont_TC << "," << pontuacao_final[i].pont_DM << "," <<
+      output << pontuacao_final[i].pont_per_A1 << "," << pontuacao_final[i].pont_per_A2 << "," << pontuacao_final[i].pont_per_B1 << "," << pontuacao_final[i].pont_per_B2 << "," << pontuacao_final[i].pont_per_B3 << "," << pontuacao_final[i].pont_per_B4 << "," << pontuacao_final[i].pont_per_B5 << "," <<
+      pontuacao_final[i].pont_per_C << "," << pontuacao_final[i].pont_per_SE << "," << pontuacao_final[i].pont_con_A1 << "," << pontuacao_final[i].pont_con_A2 << "," << pontuacao_final[i].pont_con_B1 << "," << pontuacao_final[i].pont_con_B2 << "," << pontuacao_final[i].pont_con_B3 << "," <<
+      pontuacao_final[i].pont_con_B4 << "," << pontuacao_final[i].pont_con_B5 << "," << pontuacao_final[i].pont_con_C << "," << pontuacao_final[i].pont_con_SE << "," << pontuacao_final[i].pont_IC << "," << pontuacao_final[i].pont_TC << "," << pontuacao_final[i].pont_DM << "," <<
       pontuacao_final[i].pont_TD << "," << pontuacao_final[i].somatorio << endl;
     }
     output.close();

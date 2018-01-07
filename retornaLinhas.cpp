@@ -1,6 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include<string.h>
+#include "arquivos.h"
 
 using namespace std;
 

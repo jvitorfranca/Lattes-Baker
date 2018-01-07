@@ -1,35 +1,9 @@
 #include<iostream>
 #include<string.h>
 #include<fstream>
+#include "arquivos.h"
 
 using namespace std;
-
-// estrutura que calcula a quantidade final de cada pontuação
-typedef struct _pontuacao_final_{
-  int pont_con_A1;
-  int pont_con_A2;
-  int pont_con_B1;
-  int pont_con_B2;
-  int pont_con_B3;
-  int pont_con_B4;
-  int pont_con_B5;
-  int pont_con_C;
-  int pont_con_SE;
-  int pont_per_A1;
-  int pont_per_A2;
-  int pont_per_B1;
-  int pont_per_B2;
-  int pont_per_B3;
-  int pont_per_B4;
-  int pont_per_B5;
-  int pont_per_C;
-  int pont_per_SE;
-  int pont_IC;
-  int pont_TC;
-  int pont_DM;
-  int pont_TD;
-  int somatorio;
-}conta_pontuacao;
 
 // função que retorna vetor com a pontuação final de cada um dos docentes
 conta_pontuacao *pontuacaoFinal(int size_docente, int l, conta_congresso *qntd_congresso, conta_periodico *qntd_periodico, conta_orientacao *qntd_orientacao, avaliacao *regra){

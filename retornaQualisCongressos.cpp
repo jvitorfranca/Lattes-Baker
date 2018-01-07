@@ -1,15 +1,9 @@
 #include<iostream>
 #include<string.h>
 #include<fstream>
+#include "arquivos.h"
 
 using namespace std;
-
-// estrutura que receberá as informações do arquivo qualis_capes_congressos
-typedef struct _congressos_{
-  char nome_congresso[100];
-  char sigla_congresso[20];
-  char estrato_qualis[10];
-}congresso;
 
 // função retornará um vetor da struct com as informações contidas no arquivo
 congresso *retornaCongresso(int size_congresso, char arquivo[]){

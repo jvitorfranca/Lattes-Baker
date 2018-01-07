@@ -1,18 +1,9 @@
 #include<iostream>
 #include<string.h>
 #include<fstream>
+#include "arquivos.h"
 
 using namespace std;
-
-//estrutura que receberá as informações do arquivo de orientacao
-typedef struct _orientacao_{
-  char id_docente[100];
-  char id_orientacao[100];
-  char tipo_orientacao[100];
-  char titulo[500];
-  char nome_orientando[100];
-  char ano[20];
-}orientacao;
 
 /*
   função recebe o tamanho do arquivo, o nome do mesmo

@@ -1,21 +1,9 @@
 #include<iostream>
 #include<string.h>
 #include<fstream>
+#include "arquivos.h"
 
 using namespace std;
-
-// estrutura que armazena a quantidade de cada estrato de cada docente
-typedef struct _qualis_periodicos_{
-  int estrato_A1;
-  int estrato_A2;
-  int estrato_B1;
-  int estrato_B2;
-  int estrato_B3;
-  int estrato_B4;
-  int estrato_B5;
-  int estrato_C;
-  int sem_estrato;
-}conta_periodico;
 
 // função que retorna um vetor com a quantidade dos estratos dos periódicos
 conta_periodico *qntdPeriodico(int size_docente, int size_producao, int size_periodico, int ano_minimo, int ano_maximo, int l, docente *docente_cpy, producao *producao_arq, periodico *periodico_arq, avaliacao *regra){

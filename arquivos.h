@@ -3,42 +3,142 @@
 #ifndef _ARQUIVOS_H
 #define _ARQUIVOS_H
 
-//aqui são recebidos todos os arquivos cpp
 #include<iostream>
 #include<string.h>
 #include<fstream>
-#include "retornaAvaliacao.cpp"
-#include "retornaDocentes.cpp"
-#include "retornaLinhas.cpp"
-#include "retornaOrientacao.cpp"
-#include "retornaProducao.cpp"
-#include "retornaQualisPeriodicos.cpp"
-#include "retornaQualisCongressos.cpp"
-#include "retornaNome.cpp"
-#include "qntdOrientacao.cpp"
-#include "qntdProducao.cpp"
-#include "qntdCongresso.cpp"
-#include "qntdPeriodico.cpp"
-#include "pontuacaoFinal.cpp"
-#include "ordenaPontuacao.cpp"
+
+//estrutura que receberá as informações do docente
+typedef struct _docentes_{
+  char id_docente[100];
+  char nome_completo[100];
+}docente;
+
+// estrutura que conterá as informações do arquivo de avaliação
+typedef struct _avaliacao_{
+    char area_de_avaliacao[50];
+    int pontuacao[22];
+}avaliacao;
+
+//estrutura que receberá as informações do arquivo de orientacao
+typedef struct _orientacao_{
+  char id_docente[100];
+  char id_orientacao[100];
+  char tipo_orientacao[100];
+  char titulo[500];
+  char nome_orientando[100];
+  char ano[20];
+}orientacao;
+
+//estrutura do arquivo de produção
+typedef struct _producao_{
+  char id_docente[100];
+  char id_producao[300];
+  char tipo_producao[300];
+  char issn[50];
+  char titulo[300];
+  char local[300];
+  int ano_trabalho;
+}producao;
+
+// estrutura que receberá as informações do arquivo qualis_capes_congressos
+typedef struct _congressos_{
+  char nome_congresso[100];
+  char sigla_congresso[20];
+  char estrato_qualis[10];
+}congresso;
+
+// estrutura que receberá as informações do arquivo periodico
+typedef struct _periodicos_{
+  char issn[50];
+  char nome_periodico[200];
+  char area_de_avaliacao[100];
+  char estrato_qualis[10];
+}periodico;
+
+// estrutura que armazena o numero de artigos e trabalho em evento de cada docente
+typedef struct _producao_por_docente_{
+  int artigo_publicado;
+  int trabalho_evento;
+}conta_producao;
+
+// estrutura que armazena a quantidade de cada estrato de cada docente
+typedef struct _qualis_periodicos_{
+  int estrato_A1;
+  int estrato_A2;
+  int estrato_B1;
+  int estrato_B2;
+  int estrato_B3;
+  int estrato_B4;
+  int estrato_B5;
+  int estrato_C;
+  int sem_estrato;
+}conta_periodico;
+
+// estrutura que armazena a quantidade de orientacoes de cada docente
+typedef struct _orientacao_por_docente_{
+  int iniciacao_cientifica;
+  int trabalho_conclusao;
+  int dissertacao_mestrado;
+  int tese_doutorado;
+}conta_orientacao;
+
+// estrutura que receberá a quantidade de estratos de congresso para cada docente
+typedef struct _qualis_congressos_{
+  int estrato_A1;
+  int estrato_A2;
+  int estrato_B1;
+  int estrato_B2;
+  int estrato_B3;
+  int estrato_B4;
+  int estrato_B5;
+  int estrato_C;
+  int sem_estrato;
+}conta_congresso;
+
+// estrutura que calcula a quantidade final de cada pontuação
+typedef struct _pontuacao_final_{
+  int pont_con_A1;
+  int pont_con_A2;
+  int pont_con_B1;
+  int pont_con_B2;
+  int pont_con_B3;
+  int pont_con_B4;
+  int pont_con_B5;
+  int pont_con_C;
+  int pont_con_SE;
+  int pont_per_A1;
+  int pont_per_A2;
+  int pont_per_B1;
+  int pont_per_B2;
+  int pont_per_B3;
+  int pont_per_B4;
+  int pont_per_B5;
+  int pont_per_C;
+  int pont_per_SE;
+  int pont_IC;
+  int pont_TC;
+  int pont_DM;
+  int pont_TD;
+  int somatorio;
+}conta_pontuacao;
 
 //função que recebe o arquivo e retorna seu número de linhas
 int numLinhas(char *arquivo);
 
 //função que recebe o tamanho do arquivo docente e retora um vetor com as informações contidas no aquivo
-docente *retornaDocente(int size_docente);
+docente *retornaDocente(int size_docente, char arquivo[]);
 
 //função que recebe o tamanho do arquivo orientacao e retorna um vetor com as informações contidas no aquivo
-orientacao *retornaOrientacao(int size_orientacao);
+orientacao *retornaOrientacao(int size_orientacao, char arquivo[]);
 
 //função que recebe o tamanho do arquivo producao e retorna um vetor com as informações contidas no aquivo
-producao *retornaProducoes(int size_producao);
+producao *retornaProducoes(int size_producao, char arquivo[]);
 
 //função que recebe o tamanho do arquivo periodico e retorna um vetor com as informações contidas no aquivo
-periodico *retornaPeriodico(int size_periodico);
+periodico *retornaPeriodico(int size_periodico, char arquivo[]);
 
 //função que recebe o tamanho do arquivo congresso e retorna um vetor com as informações contidas no aquivo
-congresso *retornaCongresso(int size_congresso);
+congresso *retornaCongresso(int size_congresso, char arquivo[]);
 
 //função que recebe o tamanho do arquivo de avaliação e retorna um vetor com as informações contidas no aquivo
 avaliacao retornaPontuacoes(char regra_avaliacao[]);
@@ -65,34 +165,3 @@ void ordenaPontuacao(int size_docente, conta_pontuacao *pontuacao_final, docente
 char *retornaNome(char arquivo_regra[]);
 
 #endif
-
-/*for (i = 1;i < size_docente;i++){
-  cout << "Docente: " << docente_arq[i].nome_completo << endl;
-    cout << "Estrato A1: " << qntd_congresso[i].estrato_A1 << endl;
-    cout << "Estrato A2: " << qntd_congresso[i].estrato_A2 << endl;
-    cout << "Estrato B1: " << qntd_congresso[i].estrato_B1 << endl;
-    cout << "Estrato B2: " << qntd_congresso[i].estrato_B2 << endl;
-    cout << "Estrato B3: " << qntd_congresso[i].estrato_B3 << endl;
-    cout << "Estrato B4: " << qntd_congresso[i].estrato_B4 << endl;
-    cout << "Estrato B5: " << qntd_congresso[i].estrato_B5 << endl;
-    cout << "Estrato C: " << qntd_congresso[i].estrato_C << endl;
-    cout << "Sem Estrato: " << qntd_congresso[i].sem_estrato << endl;
-    cout << endl;
-    cout << "Docente: " << docente_arq[i].nome_completo << endl;
-    cout << "Docente: " << docente_arq[i].nome_completo << endl;
-    cout << "Estrato A1: " << qntd_periodico[i].estrato_A1 << endl;
-    cout << "Estrato A2: " << qntd_periodico[i].estrato_A2 << endl;
-    cout << "Estrato B1: " << qntd_periodico[i].estrato_B1 << endl;
-    cout << "Estrato B2: " << qntd_periodico[i].estrato_B2 << endl;
-    cout << "Estrato B3: " << qntd_periodico[i].estrato_B3 << endl;
-    cout << "Estrato B4: " << qntd_periodico[i].estrato_B4 << endl;
-    cout << "Estrato B5: " << qntd_periodico[i].estrato_B5 << endl;
-    cout << "Estrato C: " << qntd_periodico[i].estrato_C << endl;
-    cout << "Sem Estrato: " << qntd_periodico[i].sem_estrato << endl;
-    cout << endl;
-    cout << "Dissertações de mestrado: " << qntd_orientacao[i].dissertacao_mestrado << endl;
-    cout << "Trabalho de conclusao de curso: " << qntd_orientacao[i].trabalho_conclusao << endl;
-    cout << "Iniciações científicas: " << qntd_orientacao[i].iniciacao_cientifica << endl;
-    cout << "Teses de doutorado: " << qntd_orientacao[i].tese_doutorado << endl;
-    cout << endl;
-}*/

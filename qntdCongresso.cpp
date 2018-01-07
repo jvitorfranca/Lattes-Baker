@@ -1,21 +1,9 @@
 #include<iostream>
 #include<string.h>
 #include<fstream>
+#include "arquivos.h"
 
 using namespace std;
-
-// estrutura que receberá a quantidade de estratos de congresso para cada docente
-typedef struct _qualis_congressos_{
-  int estrato_A1;
-  int estrato_A2;
-  int estrato_B1;
-  int estrato_B2;
-  int estrato_B3;
-  int estrato_B4;
-  int estrato_B5;
-  int estrato_C;
-  int sem_estrato;
-}conta_congresso;
 
 // função que retorna um vetor da estrutura que contêm a quantidade dos congressos
 conta_congresso *qntdCongresso(int size_docente, int size_producao, int size_congresso, int ano_minimo, int ano_maximo, docente *docente_cpy, producao *producao_arq, congresso *congresso_arq, conta_producao *qntd_producao){

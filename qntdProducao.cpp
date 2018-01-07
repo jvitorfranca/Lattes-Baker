@@ -1,14 +1,9 @@
 #include<iostream>
 #include<string.h>
 #include<fstream>
+#include "arquivos.h"
 
 using namespace std;
-
-// estrutura que armazena o numero de artigos e trabalho em evento de cada docente
-typedef struct _producao_por_docente_{
-  int artigo_publicado;
-  int trabalho_evento;
-}conta_producao;
 
 // função que retorna um vetor da estrutura
 conta_producao *qntdProducao(int size_docente, int size_producao, docente *docente_arq, producao *producao_arq){
